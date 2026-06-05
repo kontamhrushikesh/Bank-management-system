@@ -2,102 +2,81 @@
 
 ## 📌 Project Overview
 
-The Bank Management System is a full-stack web application designed to manage banking operations efficiently. The system provides functionalities for customer management, account management, transaction processing, loan management, employee management, and branch management.
+The Bank Management System is a Python-based console application developed using Object-Oriented Programming (OOP) and MongoDB. The system allows users to register, log in, manage bank accounts, perform transactions, and maintain transaction records.
 
-The objective of this project is to create a secure, scalable, and user-friendly banking platform that simplifies day-to-day banking activities while maintaining data integrity and security.
+The project demonstrates core banking functionalities such as account creation, balance enquiry, cash deposits, withdrawals, and fund transfers while storing customer and transaction data in MongoDB using PyMongo.
 
 ---
 
 ## 🎯 Features
 
-### 👤 User Management
+### 👤 User Authentication
 
-- User Registration
-- Secure Login & Authentication
-- Role-Based Access Control
-- Profile Management
+* User Registration (Sign Up)
+* User Login (Sign In)
+* Username Availability Validation
+* Password Verification
+* Unique Account Number Generation
 
-### 🏦 Customer Management
+### 👥 Customer Management
 
-- Customer Registration
-- KYC Verification
-- Customer Information Management
-- Address and Identity Storage
+* Customer Registration
+* Customer Profile Storage
+* Customer Information Management
 
 ### 💳 Account Management
 
-- Savings Account Creation
-- Current Account Creation
-- Account Status Management
-- Balance Tracking
-- Account Details Management
+* Automatic  Unique Account Number Generation
+* Account Status Management
+* Balance Tracking
+* Account Information Storage
 
 ### 💰 Transaction Management
 
-- Deposit Funds
-- Withdraw Funds
-- Transfer Funds
-- Transaction History
-- Reference Number Tracking
+* Cash Deposit
+* Cash Withdrawal
+* Fund Transfer
+* Transaction History Recording
+* Timestamp-Based Transaction Logging
 
-### 👥 Beneficiary Management
+### 🏦 Banking Services
 
-- Add Beneficiary
-- Update Beneficiary
-- Delete Beneficiary
-- Transfer to Beneficiaries
-
-### 📈 Loan Management
-
-- Apply for Loan
-- Loan Approval Process
-- EMI Calculation
-- Loan Status Tracking
-
-### 🏢 Branch Management
-
-- Branch Registration
-- IFSC Management
-- Branch Details Management
-
-### 👨‍💼 Employee Management
-
-- Employee Registration
-- Branch Assignment
-- Employee Role Management
+* Balance Enquiry
+* Deposit Funds
+* Withdraw Funds
+* Transfer Funds Between Accounts
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Frontend
+### Programming Language
 
-- React.js
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap / Tailwind CSS
-
-### Backend
-
-- Node.js
-- Express.js
+* Python 3.x
 
 ### Database
 
-- MongoDB
+* MongoDB
 
-### Authentication
+### Database Driver
 
-- JWT Authentication
-- Bcrypt Password Hashing
+* PyMongo
+
+### Concepts Used
+
+* Object-Oriented Programming (OOP)
+* CRUD Operations
+* Exception Handling
+* Modular Programming
+* MongoDB Collections
+* Banking Workflow Logic
 
 ### Tools
 
-- Git
-- GitHub
-- Postman
-- MongoDB Compass
+* MongoDB Compass
+* Git
+* GitHub
+* Visual Studio Code
 
 ---
 
@@ -106,133 +85,241 @@ The objective of this project is to create a secure, scalable, and user-friendly
 ```bash
 Bank-Management-System/
 │
-├── backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   ├── utils/
-│   ├── app.js
-│   └── server.js
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── context/
-│   │   └── App.js
-│   │
-│   └── package.json
-│
-├── README.md
-└── .env
+├── main.py
+├── register.py
+├── customer.py
+├── bank.py
+├── database.py
+└── README.md
 ```
 
 ---
 
+## 🗄️ Database Design
+
+### Database Name
+
+```text
+bank
+```
+
+### Collection: customers
+
+Stores customer account information.
+
+```json
+{
+  "username": "hrushi",
+  "password": "1234",
+  "name": "Hrushikesh",
+  "age": "22",
+  "city": "Pune",
+  "balance": 0,
+  "account_number": 12345678,
+  "status": 1
+}
+```
+
+### Collection: transactions
+
+Stores transaction records.
+
+```json
+{
+  "timedate": "2026-06-05 10:30:00",
+  "username": "hrushi",
+  "account_number": 12345678,
+  "remarks": "Amount Deposit",
+  "amount": 5000
+}
+```
+
+---
 
 ## 🔗 Database Relationships
 
 ```text
-Users (1) -------- (1) Customers
+Customers (1)
+      │
+      │
+      ▼
+Transactions (M)
 
-Customers (1) ---- (M) Accounts
-
-Accounts (1) ----- (M) Transactions
-
-Customers (1) ---- (M) Beneficiaries
-
-Customers (1) ---- (M) Loans
-
-Branches (1) ----- (M) Employees
-
-Users (1) -------- (1) Employees
+One Customer
+      │
+      ├── Deposit Transactions
+      ├── Withdrawal Transactions
+      └── Fund Transfer Transactions
 ```
+
+---
+
+## 🔄 Project Workflow
+
+### User Registration
+
+```text
+Create Username
+        ↓
+Validate Username
+        ↓
+Generate Unique Account Number
+        ↓
+Create Customer Object
+        ↓
+Store Customer Record in MongoDB
+```
+
+### User Login
+
+```text
+Enter Username
+        ↓
+Verify Username
+        ↓
+Verify Password
+        ↓
+Authentication Success
+```
+
+### Banking Operations
+
+```text
+Login
+   ↓
+Bank Menu
+   ↓
+Balance Enquiry
+Deposit
+Withdraw
+Fund Transfer
+   ↓
+Update MongoDB
+   ↓
+Store Transaction Record
+```
+
+---
+
+## 🧠 OOP Design
+
+### Customer Class
+
+Responsible for:
+
+* Storing customer information
+* Creating customer records
+* Passing customer data to MongoDB
+
+### Bank Class
+
+Responsible for:
+
+* Balance Enquiry
+* Cash Deposit
+* Cash Withdrawal
+* Fund Transfer
+* Transaction Recording
 
 ---
 
 ## 🔐 Security Features
 
-- JWT Authentication
-- Password Hashing using Bcrypt
-- Role-Based Authorization
-- Protected API Routes
-- Input Validation
-- Error Handling Middleware
-- Environment Variable Protection
+* Username Uniqueness Validation
+* Account Number Uniqueness Validation
+* Input Validation
+* Exception Handling
+* MongoDB Indexing
 
 ---
 
-## ⚙️ Environment Variables
-
-```env
-PORT=5000
-
-MONGO_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
-```
-
----
-
-## 🚀 Installation
+## ⚙️ Installation
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/bank-management-system.git
+git clone https://github.com/kontamhrushikesh/Bank--management-system.git
 ```
 
 ### Navigate to Project
 
 ```bash
-cd bank-management-system
+cd Bank--management-system
 ```
 
-### Install Backend Dependencies
+### Install Dependencies
 
 ```bash
-cd backend
-npm install
+pip install pymongo
 ```
 
-### Install Frontend Dependencies
+### Start MongoDB
 
-```bash
-cd ../frontend
-npm install
+Ensure MongoDB Server is running:
+
+```text
+mongodb://localhost:27017/
 ```
 
-### Start Backend Server
+### Run Application
 
 ```bash
-npm run dev
-```
-
-### Start Frontend
-
-```bash
-npm start
+python main.py
 ```
 
 ---
 
-## 📊 Future Enhancements
+## 📸 Application Menu
 
-- Internet Banking
-- Mobile Banking
-- UPI Integration
-- Credit Card Module
-- Fixed Deposit Module
-- SMS Notifications
-- Email Notifications
-- AI Fraud Detection
-- Analytics Dashboard
-- Audit Logging
+### Main Menu
+
+```text
+Welcome to Mohit Banking Project
+
+1. SignUp
+2. SignIn
+```
+
+### Banking Menu
+
+```text
+1. Balance Enquiry
+2. Cash Deposit
+3. Cash Withdraw
+4. Fund Transfer
+5. Exit
+```
+
+---
+
+## 📚 Learning Outcomes
+
+This project helped in understanding:
+
+* Python Programming
+* Object-Oriented Programming (OOP)
+* MongoDB Database Design
+* PyMongo Integration
+* CRUD Operations
+* Banking Business Logic
+* Exception Handling
+* Authentication Flow
+* Modular Project Architecture
+
+---
+
+## 🚀 Future Enhancements
+
+* Password Hashing using bcrypt
+* Admin Dashboard
+* Transaction Statement Generation
+* Multiple Accounts Per User
+* Account Deletion
+* Loan Management Module
+* Fixed Deposit Module
+* Interest Calculation
+* GUI Interface
+* REST API Integration
 
 ---
 
@@ -240,12 +327,12 @@ npm start
 
 **Hrushikesh Kontam**
 
-GitHub: https://github.com/
+Python Developer | AI/ML Enthusiast | Backend Development Learner
 
-LinkedIn: https://linkedin.com/
+GitHub: https://github.com/kontamhrushikesh
 
 ---
 
 ## 📄 License
 
-This project is developed for educational and portfolio purposes.
+This project is developed for educational, learning, and portfolio purposes.
