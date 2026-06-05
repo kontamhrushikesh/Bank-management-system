@@ -235,7 +235,7 @@ Bank-Management-System/
 
 ```javascript
 {
-  _id, branchName, ifscCode, address, city, state, pincode, phone, createdAt;
+  _id, address, city, state, pincode, phone, createdAt;
 }
 ```
 
