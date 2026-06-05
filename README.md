@@ -330,6 +330,7 @@ This project helped in understanding:
 Python Developer | AI/ML Enthusiast | Backend Development Learner
 
 GitHub: https://github.com/kontamhrushikesh
+https://www.linkedin.com/in/hrushikesh-kontam/
 
 ---
 
